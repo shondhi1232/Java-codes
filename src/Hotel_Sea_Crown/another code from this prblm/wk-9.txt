@@ -1,0 +1,88 @@
+// Main
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Customer c = new Customer();
+        c.customerInfo();
+        c.printInfo();
+    }
+}
+
+
+// Rooms
+package com.company;
+
+public class Rooms extends Standard{
+//    int numberOfRoom = 40;
+    protected String roomId;
+    protected String roomCategory;
+//    int numberOfRentRooms;
+}
+
+
+//standard
+package com.company;
+
+public class Standard extends Deluxe{
+//    protected int numberOfStandardRoom = 30;
+
+    protected boolean isAcAvailability;
+}
+
+
+//Deluxe
+package com.company;
+
+public class Deluxe{
+//    int numberOfDeluxeRoom = 10;
+    protected String roomSize;
+}
+
+
+//Customer
+package com.company;
+
+import java.util.Scanner;
+
+public class Customer extends Rooms{
+    protected Scanner input = new Scanner(System.in);
+    protected String customerId;
+    protected String customerName;
+
+    public void customerInfo(){
+        customerName = input.next();
+        customerId = input.next();
+        roomId = input.next();
+        System.out.println("Room Category: 1.Standard 2.Deluxe");
+        int choose = input.nextInt();
+        switch (choose) {
+            case 1 :
+                System.out.println("1.Ac or 2.Non-Ac");
+                roomCategory = "Standard with Ac";
+                int acOrNonAc = input.nextInt();
+                if (acOrNonAc == 2) {
+                    isAcAvailability = false;
+                } else {
+                    isAcAvailability = true;
+                }
+                break;
+            case 2:
+                roomCategory = "Deluxe";
+                roomSize = input.next();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + choose);
+        }
+    }
+
+    public void printInfo(){
+        System.out.println("Customer name: " + customerName);
+        System.out.println("Customer id: " + customerId);
+        System.out.println("Room id: " + roomId);
+        System.out.println("Room Category: " + roomCategory);
+        System.out.println("Room size: " + roomSize);
+
+    }
+}

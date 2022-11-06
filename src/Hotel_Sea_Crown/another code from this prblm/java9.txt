@@ -1,0 +1,168 @@
+///////id:192-35-2865
+
+
+package Hotel_sea_crown;
+
+
+
+public class Room {
+
+    protected int room_id;
+   
+    protected Customer c ;
+    
+    protected void room_id(int r){
+    
+      room_id = r;     
+
+    }
+  
+    protected void Customer_id(Customer c){
+      this.c = c;   
+    }
+      
+    
+}
+//////deluxe class///////--------------------
+
+package Hotel_sea_crown;
+
+import java.util.Scanner;
+
+public class Deluxe extends Room {
+    
+    protected int room_size;
+    protected int m;
+
+   
+    protected void deluxe_room(){
+    
+     
+        System.out.println("Enter number of deluxe Room: " );
+        m= input.nextInt();
+
+        Deluxe[] array = new Deluxe[30];
+        for (room_id = 0; room_id <= m; room_id++){
+           
+          System.out.println("Your deluxe room id is: " +room_id);
+          
+          System.out.println("Enter the room size:");
+          room_size = input.nextInt();
+          System.out.println("Deluxe room size is: " +room_size);
+        }
+     
+    }
+
+   
+    
+}
+
+/////standard class//////------------------
+
+package Hotel_sea_crown;
+
+import java.util.Scanner;
+
+public class Standard extends Room {
+    
+    protected int a;
+    protected boolean isAcAvailability;
+    
+    protected void standard_room(){
+      
+    Scanner input = new Scanner(System.in);
+    System.out.print("Enter the standard room number: ");
+      a= input.nextInt();
+
+       Standard[] StandardRooms = new Standard[10];       
+        for (room_id = 1; room_id <= a; room_id++){
+            
+            System.out.println("AcAvailable(yes= 1) ");
+            int choice = input.nextInt();
+            if(choice == 1){
+                System.out.println("Your stantard room id is: " +room_id);
+                isAcAvailability = true; 
+                System.out.println("AcAvailability is: "+isAcAvailability); 
+            }            
+            else{
+                System.out.println("Your stantard room id is: " +room_id);
+                isAcAvailability = false; 
+                System.out.println("AcAvailability is: "+isAcAvailability); 
+            }
+          
+        }
+     }
+}
+///////customer class//////----------------------
+
+package Hotel_sea_crown;
+
+import java.util.Scanner;
+
+public class Customer {
+    
+    protected String name;
+    protected int id;
+    String roomCategory;
+
+    
+    protected void customer_info(int id,String name){       
+        this.id = id;
+        this.name = name; 
+    }
+
+
+
+    protected void print_info(){
+    System.out.println("Customer ID: "+id);
+    System.out.println("Customer name: "+name);
+    }
+    
+    
+    protected void rent_Room(){
+        
+        Scanner input = new Scanner(System.in);
+        System.out.println("Room Category: 1.Standard 2.Deluxe");
+        int choice = input.nextInt();
+        switch (choice) {
+            case 1 :
+                roomCategory = "Standard";
+                System.out.println("Room Category:Standard");
+                 s.standard_room();
+                break;
+            case 2:
+                roomCategory = "Deluxe";
+                System.out.println("Room Category:Deluxe");
+                d.deluxe_room();
+                break;
+            default:
+              System.out.println("Error");  
+        }
+    }
+}
+
+///////main class///////----------------------------------------------
+
+package Hotel_sea_crown;
+
+import java.util.Scanner;
+
+
+public class Main {
+    
+    public static void main(String[] args){
+        
+       Scanner input = new Scanner(System.in);
+        Customer c = new Customer();
+        System.out.println("Please enter the customer id: ");
+         int id = input.nextInt();       
+        System.out.println("Please enter the customer name: ");
+        String n = input.nextLine();
+        
+        c.customer_info(id, n);
+        Standard s = new Standard();
+        Deluxe d = new Deluxe();
+        c.rent_Room();
+    
+    }
+}
